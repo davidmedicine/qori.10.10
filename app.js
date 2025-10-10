@@ -12,8 +12,13 @@ async function loadTranslations(lang){
     const dict=await res.json();
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key=el.dataset.i18n;
-      if(dict[key]){
-        el.innerHTML=dict[key];
+      const translation=dict[key];
+      if(translation===undefined) return;
+      const attrTarget=el.dataset.i18nAttr;
+      if(attrTarget){
+        el.setAttribute(attrTarget,translation);
+      }else{
+        el.innerHTML=translation;
       }
     });
     document.documentElement.lang=lang;
