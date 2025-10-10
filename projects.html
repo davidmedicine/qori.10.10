@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Qori Labs | Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="enhanced-styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary" class="nav-bar">
+      <a class="logo" href="index.html">Qori Labs</a>
+      <ul class="nav-list">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="projects.html" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="ethics.html" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
+        <li><a href="whitepaper.html" data-i18n="nav_whitepaper">White Paper</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <language-switcher></language-switcher>
+    </nav>
+  </header>
+  <main>
+    <h1 data-i18n="projects_title">Research Projects</h1>
+    <article class="project-card">
+      <h2 data-i18n="projects_recip_title">Reciprocal Intelligence</h2>
+      <p data-i18n="projects_recip_question"><strong>Question:</strong> How can AI practice Ayni?</p>
+      <p data-i18n="projects_recip_sites"><strong>Sites:</strong> local communities in Cusco (ongoing). We invite other communities and institutions who share these values to join the conversation.</p>
+      <p data-i18n="projects_recip_outputs"><strong>Outputs:</strong> Open-source agent, governance templates, co-authored papers (forthcoming).</p>
+      <p class="guardrail" data-i18n="projects_recip_guardrail"><strong>Ethical guardrails:</strong> No data without consent. No models without community review. No publications without co-authorship.</p>
+    </article>
+    <article class="project-card">
+      <h2 data-i18n="projects_higherself_title">HigherSelf Protocol</h2>
+      <p data-i18n="projects_higherself_body">An implementation guide for encoding Andean ethical principles into federated, offline-first AI systems. <a href="https://higherself.ai" rel="noopener">Technical documentation &rarr;</a></p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

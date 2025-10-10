@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Qori Labs | Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="enhanced-styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary" class="nav-bar">
+      <a class="logo" href="index.html">Qori Labs</a>
+      <ul class="nav-list">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="projects.html" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="ethics.html" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
+        <li><a href="whitepaper.html" data-i18n="nav_whitepaper">White Paper</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <language-switcher></language-switcher>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h1 data-i18n="contact_title">Contact</h1>
+      <p data-i18n="contact_intro">We welcome academic collaboration, joint publications, and student fieldwork. Please reach out with institutional affiliation and a brief research outline.</p>
+      <form action="https://formspree.io/f/YOUR_ID" method="POST">
+        <label for="name" data-i18n="contact_label_name">Name / Institutional affiliation</label>
+        <input id="name" name="name" type="text" required />
+        <label for="email" data-i18n="contact_label_email">Email</label>
+        <input id="email" name="email" type="email" required />
+        <label for="message" data-i18n="contact_label_message">Research outline or inquiry</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit" data-i18n="contact_submit">Send academic inquiry</button>
+      </form>
+      <p><small data-i18n="contact_notice">Commercial or textile-related messages will not receive a reply.</small></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

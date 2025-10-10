@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HigherSelf Protocol</title>
+  <meta name="description" content="A community-governed framework that encodes relational ethics into artificial intelligence.">
+  <meta property="og:title" content="HigherSelf Protocol">
+  <meta property="og:description" content="A community-governed framework that encodes relational ethics into artificial intelligence.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="theme-color" content="#d4af37">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      line-height: 1.7;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #223240;
+      background: #f8f4ed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    :root {
+      --accent: #d4af37;
+      --text: #223240;
+      --text-muted: rgba(34, 50, 64, 0.76);
+      --surface: rgba(255, 255, 255, 0.94);
+      --border: rgba(34, 50, 64, 0.12);
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    main {
+      max-width: min(900px, 100vw);
+      width: 100%;
+      background: #fbfaf5;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(17, 27, 36, 0.08);
+      padding: clamp(2rem, 6vw, 3.5rem) clamp(1.75rem, 5vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 5vw, 3rem);
+      position: relative;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: clamp(1rem, 3vw, 1.75rem);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .language-toggle button {
+      font: inherit;
+      padding: 0.35rem 0.9rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .language-toggle button[aria-pressed="true"] {
+      background: var(--accent);
+      color: #1a2430;
+      font-weight: 500;
+    }
+
+    .language-toggle button:focus-visible {
+      outline: 2px solid rgba(212, 175, 55, 0.5);
+      outline-offset: 3px;
+    }
+
+    h1 {
+      font-family: 'Crimson Text', serif;
+      font-weight: 600;
+      font-size: clamp(2.1rem, 4vw, 2.75rem);
+      line-height: 1.18;
+      letter-spacing: 0.01em;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 45ch;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.75rem, 4vw, 2.25rem);
+    }
+
+    .cards {
+      display: grid;
+      gap: clamp(1.25rem, 3vw, 1.75rem);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(1.25rem, 3.5vw, 1.75rem);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card h3 {
+      font-family: 'Crimson Text', serif;
+      font-weight: 600;
+      font-size: clamp(1.25rem, 2.5vw, 1.4rem);
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .notice {
+      background: rgba(247, 239, 223, 0.85);
+      border-left: 5px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .notice strong {
+      font-family: 'Crimson Text', serif;
+      font-weight: 600;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border: 2px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1a2430;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid rgba(212, 175, 55, 0.45);
+      outline-offset: 3px;
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(212, 175, 55, 0.6);
+    }
+
+    footer a:focus-visible {
+      outline: 2px solid rgba(212, 175, 55, 0.5);
+      outline-offset: 3px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: clamp(1.75rem, 6vw, 2.25rem) clamp(1.1rem, 4vw, 1.5rem);
+      }
+
+      main::before {
+        inset: clamp(0.75rem, 3vw, 1.25rem);
+      }
+
+      .language-toggle button {
+        padding: 0.3rem 0.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <div class="top-bar">
+        <div class="language-toggle" role="group" aria-label="Language toggle">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+      </div>
+      <div>
+        <h1 data-i18n="title">HigherSelf Protocol</h1>
+        <p class="lead" data-i18n="subtitle">A community-governed framework that encodes relational ethics into artificial intelligence.</p>
+      </div>
+    </header>
+
+    <section aria-labelledby="principles">
+      <h2 id="principles" class="sr-only" data-i18n="principlesHeading">Core Principles</h2>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="card1Title">Ayni (Reciprocity)</h3>
+          <p data-i18n="card1Body">Technical translation: Reciprocal data flows with community benefit sharing. Data contributions must return value through accessible insights and collective decision power.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="card2Title">Minka (Collective Work)</h3>
+          <p data-i18n="card2Body">Technical translation: Participatory design where community members are co-researchers, not subjects. Systems must amplify collective intelligence rather than replace human judgment.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="card3Title">Amaru (Serpent Wisdom)</h3>
+          <p data-i18n="card3Body">Technical translation: Cyclical learning that adapts through ongoing community feedback. Knowledge is relational and contextual—not extractable or universal.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="notice">
+      <h2 id="notice" class="sr-only" data-i18n="noticeHeading">Critical Notice</h2>
+      <div class="notice" data-i18n="notice"><p><strong>No licensing fees.</strong> No consulting services. No monetization of community knowledge. HigherSelf is a non-commercial research commons. Commercial textile and prison services are managed separately by Qori Textiles and local Peruvian entities.</p></div>
+    </section>
+
+    <section aria-label="Calls to action">
+      <div class="cta">
+        <a class="btn" href="white-paper.html" data-i18n="ctaWhitePaper">Read the White Paper</a>
+        <a class="btn" href="https://github.com/higherselfprotocol/ai-native" target="_blank" rel="noopener" data-i18n="ctaCode">View the Code</a>
+      </div>
+    </section>
+
+    <footer>
+      <p><a href="mailto:community@higherself.ai" data-i18n="footerEmail">community@higherself.ai</a></p>
+      <p data-i18n="footerLegal">© 2025 HigherSelf Protocol. Non-commercial research commons.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const translations = {
+        en: {
+          pageTitle: 'HigherSelf Protocol',
+          metaDescription: 'A community-governed framework that encodes relational ethics into artificial intelligence.',
+          ogLocale: 'en_US',
+          title: 'HigherSelf Protocol',
+          subtitle: 'A community-governed framework that encodes relational ethics into artificial intelligence.',
+          principlesHeading: 'Core Principles',
+          card1Title: 'Ayni (Reciprocity)',
+          card1Body: 'Technical translation: Reciprocal data flows with community benefit sharing. Data contributions must return value through accessible insights and collective decision power.',
+          card2Title: 'Minka (Collective Work)',
+          card2Body: 'Technical translation: Participatory design where community members are co-researchers, not subjects. Systems must amplify collective intelligence rather than replace human judgment.',
+          card3Title: 'Amaru (Serpent Wisdom)',
+          card3Body: 'Technical translation: Cyclical learning that adapts through ongoing community feedback. Knowledge is relational and contextual—not extractable or universal.',
+          noticeHeading: 'Critical Notice',
+          notice: '<strong>No licensing fees.</strong> No consulting services. No monetization of community knowledge. HigherSelf is a non-commercial research commons. Commercial textile and prison services are managed separately by Qori Textiles and local Peruvian entities.',
+          ctaWhitePaper: 'Read the White Paper',
+          ctaCode: 'View the Code',
+          footerEmail: 'community@higherself.ai',
+          footerLegal: '© 2025 HigherSelf Protocol. Non-commercial research commons.'
+        },
+        es: {
+          pageTitle: 'Protocolo HigherSelf',
+          metaDescription: 'Un marco gobernado por la comunidad que codifica la ética relacional en la inteligencia artificial.',
+          ogLocale: 'es_ES',
+          title: 'Protocolo HigherSelf',
+          subtitle: 'Un marco gobernado por la comunidad que codifica la ética relacional en la inteligencia artificial.',
+          principlesHeading: 'Principios Fundamentales',
+          card1Title: 'Ayni (Reciprocidad)',
+          card1Body: 'Traducción técnica: Flujos de datos recíprocos con distribución de beneficios comunitarios. Las contribuciones de datos deben devolver valor mediante información accesible y poder colectivo de decisión.',
+          card2Title: 'Minka (Trabajo Colectivo)',
+          card2Body: 'Traducción técnica: Diseño participativo donde los miembros de la comunidad son co-investigadores, no sujetos. Los sistemas deben amplificar la inteligencia colectiva sin reemplazar el juicio humano.',
+          card3Title: 'Amaru (Sabiduría de la Serpiente)',
+          card3Body: 'Traducción técnica: Aprendizaje cíclico que se adapta mediante retroalimentación comunitaria continua. El conocimiento es relacional y contextual; no es extraíble ni universal.',
+          noticeHeading: 'Aviso Crítico',
+          notice: '<strong>Sin tarifas de licencia.</strong> Sin servicios de consultoría. Sin monetización del conocimiento comunitario. HigherSelf es un bien común de investigación no comercial. Los servicios comerciales de textiles y prisiones son gestionados por separado por Qori Textiles y entidades peruanas locales.',
+          ctaWhitePaper: 'Leer el Libro Blanco',
+          ctaCode: 'Ver el Código',
+          footerEmail: 'community@higherself.ai',
+          footerLegal: '© 2025 Protocolo HigherSelf. Bien común de investigación no comercial.'
+        }
+      };
+
+      const elements = document.querySelectorAll('[data-i18n]');
+      const metaDescription = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      const langButtons = document.querySelectorAll('.language-toggle button');
+
+      const getPreferredLanguage = () => {
+        const stored = localStorage.getItem('preferredLanguage');
+        if (stored && translations[stored]) return stored;
+        const userLang = navigator.language || navigator.userLanguage || 'en';
+        const shortLang = userLang.slice(0, 2).toLowerCase();
+        return translations[shortLang] ? shortLang : 'en';
+      };
+
+      const setActiveButton = (lang) => {
+        langButtons.forEach((button) => {
+          const isActive = button.dataset.lang === lang;
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+      };
+
+      const applyTranslations = (lang) => {
+        const dictionary = translations[lang] || translations.en;
+        document.documentElement.lang = lang;
+        document.title = dictionary.pageTitle;
+        if (metaDescription) metaDescription.setAttribute('content', dictionary.metaDescription);
+        if (ogTitle) ogTitle.setAttribute('content', dictionary.pageTitle);
+        if (ogDescription) ogDescription.setAttribute('content', dictionary.metaDescription);
+        if (ogLocale) ogLocale.setAttribute('content', dictionary.ogLocale);
+
+        elements.forEach((element) => {
+          const key = element.getAttribute('data-i18n');
+          if (!key || !(key in dictionary)) return;
+          if (key === 'notice') {
+            element.innerHTML = `<p>${dictionary[key]}</p>`;
+          } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+            element.textContent = dictionary[key];
+          } else {
+            element.textContent = dictionary[key];
+          }
+        });
+
+        setActiveButton(lang);
+      };
+
+      const setLanguage = (lang) => {
+        if (!translations[lang]) lang = 'en';
+        localStorage.setItem('preferredLanguage', lang);
+        applyTranslations(lang);
+      };
+
+      langButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const lang = button.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+
+      applyTranslations(getPreferredLanguage());
+    })();
+  </script>
+</body>
+</html>
