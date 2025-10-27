@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title data-i18n="meta_whitepaper_title">Qori Labs | Yachay Wasi: Community Information Service via SMS</title>
+  <title data-i18n="meta_whitepaper_title">Qori Labs | Reciprocal Intelligence: Community Information Service via SMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="enhanced-styles.css" />
 </head>
@@ -14,7 +14,7 @@
         <li><a href="index.html" data-i18n="nav_home">Home</a></li>
         <li><a href="projects.html" data-i18n="nav_projects">Projects</a></li>
         <li><a href="ethics.html" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
-        <li><a href="whitepaper.html" data-i18n="nav_whitepaper">Yachay Wasi</a></li>
+        <li><a href="whitepaper.html" data-i18n="nav_whitepaper">Reciprocal Intelligence</a></li>
         <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
       <language-switcher></language-switcher>
@@ -22,17 +22,17 @@
   </header>
   <main class="whitepaper">
     <section class="hero">
-      <h1 data-i18n="whitepaper_title">Yachay Wasi: Community Information Service via SMS (White Paper)</h1>
+      <h1 data-i18n="whitepaper_title">Reciprocal Intelligence: Community Information Service via SMS (White Paper)</h1>
     </section>
     <section class="whitepaper-section">
       <h2 data-i18n="whitepaper_disclaimer_title">Status and Scope</h2>
       <div class="rich-text" data-i18n="whitepaper_disclaimer_body">
         <p>Qori Labs is a non-commercial initiative.</p>
-        <p>This document presents Yachay Wasi, a community-based, offline SMS service for local alerts.</p>
+        <p>This document presents Reciprocal Intelligence, a community-based, offline SMS service for local alerts.</p>
         <p><strong>Technical status:</strong> Technically validated through unit, integration, and SMS simulation tests in a controlled environment.</p>
         <p>No community deployment or real GSM network testing yet. Any field validation will only occur after appropriate ethical approvals, collective consent (FPIC), and required permits.</p>
         <p><strong>Focus:</strong> This is a refined result of a prior exploratory phase that evaluated different transport methods and consent architectures.</p>
-        <p>Yachay Wasi archives all non-SMS components and focuses on immediate usefulness, FPIC compliance, and local steward operation.</p>
+        <p>Reciprocal Intelligence archives all non-SMS components and focuses on immediate usefulness, FPIC compliance, and local steward operation.</p>
       </div>
     </section>
     <section class="whitepaper-section">
@@ -44,22 +44,22 @@
           <li>Below-market prices due to information asymmetries.</li>
           <li>Difficulty participating in community decisions due to care responsibilities or distance.</li>
         </ul>
-        <p>Yachay Wasi addresses these issues through simple, free SMS alerts:</p>
+        <p>Reciprocal Intelligence addresses these issues through simple, free SMS alerts:</p>
         <ul>
           <li><strong>HEALTH:</strong> Notices about services and availability of health posts.</li>
           <li><strong>PRICE:</strong> Fair price references before going to the market or buyer.</li>
           <li><strong>COMMUNITY:</strong> Reminders for meetings and local announcements.</li>
         </ul>
         <p>This is not "AI" &mdash; it is about who controls information.</p>
-        <p>Yachay Wasi returns that control to the community: local stewards send alerts with prior collective consent and built-in privacy.</p>
+        <p>Reciprocal Intelligence returns that control to the community: local stewards send alerts with prior collective consent and built-in privacy.</p>
       </div>
     </section>
     <section class="whitepaper-section">
       <h2 data-i18n="whitepaper_trends_title">Why Now (Urgency and National Alignment)</h2>
       <div class="rich-text" data-i18n="whitepaper_trends_body">
-        <p>With Peru's National Digital Development Strategy 2024-2030 prioritizing rural inclusion, Yachay Wasi provides a viable model for delivering critical information without internet connectivity.</p>
-        <p>Yachay Wasi has high potential impact: it addresses everyday problems using a replicable architecture for hundreds of rural communities in Peru.</p>
-        <p>The PROCIENCIA "Seed" program prioritizes projects with high potential impact. Yachay Wasi fits as a functional prototype ready for its first real-world validation.</p>
+        <p>With Peru's National Digital Development Strategy 2024-2030 prioritizing rural inclusion, Reciprocal Intelligence provides a viable model for delivering critical information without internet connectivity.</p>
+        <p>Reciprocal Intelligence has high potential impact: it addresses everyday problems using a replicable architecture for hundreds of rural communities in Peru.</p>
+        <p>The PROCIENCIA "Seed" program prioritizes projects with high potential impact. Reciprocal Intelligence fits as a functional prototype ready for its first real-world validation.</p>
       </div>
     </section>
     <section class="whitepaper-section">
@@ -89,7 +89,7 @@
           <li><strong>Simple subscription (via SMS):</strong> Send <code>SALUD</code>, <code>PRECIO</code>, or <code>COMUNIDAD</code>. The system confirms and assigns a unique 4-digit code for local audit (optionally printed on cards).</li>
           <li><strong>Revocation via STOP:</strong> Removes all active subscriptions and responds with a summary of canceled topics.</li>
           <li><strong>Topic broadcast (steward):</strong>
-            <pre><code>yachay-wasi broadcast --topic salud|precio|comunidad --text "..."</code></pre>
+            <pre><code>reciprocal-intelligence broadcast --topic salud|precio|comunidad --text "..."</code></pre>
             <p>Sends to all subscribers of that topic.</p>
           </li>
           <li><strong>Privacy:</strong> Numbers are resolved at send time using <code>phonebook.csv</code> (hash -&gt; number) stored offline; the database never contains plain numbers.</li>
@@ -112,9 +112,9 @@
             </ul>
           </li>
           <li><strong>CLI for stewards:</strong>
-            <pre><code>yachay-wasi init-db
-yachay-wasi community-consent --status granted|revoked --reason "Acta YYYY-MM-DD"
-yachay-wasi broadcast --topic salud|precio|comunidad --text "..."</code></pre>
+            <pre><code>reciprocal-intelligence init-db
+reciprocal-intelligence community-consent --status granted|revoked --reason "Acta YYYY-MM-DD"
+reciprocal-intelligence broadcast --topic salud|precio|comunidad --text "..."</code></pre>
           </li>
         </ul>
       </div>
@@ -173,7 +173,7 @@ yachay-wasi broadcast --topic salud|precio|comunidad --text "..."</code></pre>
       <h2 data-i18n="whitepaper_firewall_title">Role of Qori Labs and Licensing</h2>
       <div class="rich-text" data-i18n="whitepaper_firewall_body">
         <ul>
-          <li><strong>Yachay Wasi code:</strong> Public good under MIT license.</li>
+          <li><strong>Reciprocal Intelligence code:</strong> Public good under MIT license.</li>
           <li><strong>Support:</strong> Initial hardware kit (depending on funding), installation, and steward training.</li>
           <li><strong>Ownership and control:</strong> Daily operation, consent, and information remain in community hands; no cloud dependency and no reliance on Qori Labs after transfer.</li>
         </ul>
@@ -198,7 +198,7 @@ yachay-wasi broadcast --topic salud|precio|comunidad --text "..."</code></pre>
           <li><strong>Before operation:</strong> Assembly with locally recorded FPIC.</li>
           <li><strong>Subscription:</strong> Send <code>SALUD</code> / <code>PRECIO</code> / <code>COMUNIDAD</code> -&gt; confirmation + 4-digit code.</li>
           <li><strong>Broadcast (steward):</strong>
-            <pre><code>yachay-wasi broadcast --topic salud|precio|comunidad --text "..."</code></pre>
+            <pre><code>reciprocal-intelligence broadcast --topic salud|precio|comunidad --text "..."</code></pre>
           </li>
           <li><strong>Revocation:</strong> Send <code>STOP</code> -&gt; all subscriptions removed, list confirmed.</li>
           <li><strong>Privacy:</strong> Salted hashes in DB; <code>phonebook.csv</code> on encrypted USB; minimal logs with TTL.</li>
