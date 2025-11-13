@@ -1,4 +1,9 @@
-const CONTACT_ENDPOINT="/api/contact";
+const DEFAULT_CONTACT_ENDPOINTS=["/api/contact","/.netlify/functions/send-contact"];
+const CONTACT_ENDPOINTS=(Array.isArray(window.CONTACT_ENDPOINTS)?window.CONTACT_ENDPOINTS:[])
+  .concat(window.CONTACT_ENDPOINTS && !Array.isArray(window.CONTACT_ENDPOINTS)?[window.CONTACT_ENDPOINTS]:[])
+  .filter(Boolean);
+const CONTACT_ENDPOINT=window.CONTACT_ENDPOINT || CONTACT_ENDPOINTS[0] || DEFAULT_CONTACT_ENDPOINTS[0];
+const ENDPOINTS=[CONTACT_ENDPOINT].concat(CONTACT_ENDPOINTS.slice(1),DEFAULT_CONTACT_ENDPOINTS).filter((value,index,self)=>Boolean(value)&&self.indexOf(value)===index);
 
 document.addEventListener("DOMContentLoaded",()=>{
   const form=document.querySelector("[data-contact-form]");
@@ -30,26 +35,39 @@ document.addEventListener("DOMContentLoaded",()=>{
     setStatus("Sending message…");
     form.querySelector("button[type=submit]").disabled=true;
 
-    try{
-      const response=await fetch(CONTACT_ENDPOINT,{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({name,email,interest,message})
-      });
+    (async ()=>{
+      let lastError=new Error("Unable to reach the contact service.");
+      for(const endpoint of ENDPOINTS){
+        try{
+          const response=await fetch(endpoint,{
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body:JSON.stringify({name,email,interest,message})
+          });
 
-      if(!response.ok){
-        const errorBody=await response.json().catch(()=>({}));
-        const errorMessage=errorBody.error||"Unable to send message";
-        throw new Error(errorMessage);
+          if(response.ok){
+            form.reset();
+            setStatus("Thank you. Your message has been sent.","is-success");
+            return;
+          }
+
+          if([404,405,501].includes(response.status)){
+            lastError=new Error("Contact endpoint not available in this environment.");
+            continue;
+          }
+
+          const errorBody=await response.json().catch(()=>({}));
+          const errorMessage=errorBody.error||response.statusText||"Unable to send message";
+          lastError=new Error(errorMessage);
+          break;
+        }catch(err){
+          lastError=err;
+        }
       }
-
-      form.reset();
-      setStatus("Thank you. Your message has been sent.","is-success");
-    }catch(error){
-      console.error(error);
-      setStatus(error.message||"We could not send your message. Please email bentley.dave@gmail.com directly.","is-error");
-    }finally{
+      console.error(lastError);
+      setStatus(lastError.message||"We could not send your message. Please email bentley.dave@gmail.com directly.","is-error");
+    })().finally(()=>{
       form.querySelector("button[type=submit]").disabled=false;
-    }
+    });
   });
 });
