@@ -1,4 +1,10 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const resolveEnv = (names, fallback = '') => {
+  for (const name of names) {
+    if (process.env[name]) return process.env[name];
+  }
+  return fallback;
+};
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -8,9 +14,9 @@ exports.handler = async (event) => {
     };
   }
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const CONTACT_TO = process.env.CONTACT_TO || 'bentley.dave@gmail.com';
-  const CONTACT_FROM = process.env.CONTACT_FROM || 'Qori Labs Contact <onboarding@resend.dev>';
+  const RESEND_API_KEY = resolveEnv(['RESEND_API_KEY', 'RESEND_KEY', 'VERCEL_RESEND_API_KEY', 'QORI_RESEND_API_KEY']);
+  const CONTACT_TO = resolveEnv(['CONTACT_TO', 'QORI_CONTACT_TO'], 'bentley.dave@gmail.com');
+  const CONTACT_FROM = resolveEnv(['CONTACT_FROM', 'QORI_CONTACT_FROM'], 'Qori Labs Contact <onboarding@resend.dev>');
 
   if (!RESEND_API_KEY) {
     return {
