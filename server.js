@@ -3,26 +3,18 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const { getContactConfig } = require('./contact-config');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const resolveEnv = (names, fallback = '') => {
-  for (const name of names) {
-    if (process.env[name]) return process.env[name];
-  }
-  return fallback;
-};
-
-const RESEND_API_KEY = resolveEnv(['RESEND_API_KEY', 'RESEND_KEY', 'VERCEL_RESEND_API_KEY', 'QORI_RESEND_API_KEY']);
-const CONTACT_TO = resolveEnv(['CONTACT_TO', 'QORI_CONTACT_TO'], 'bentley.dave@gmail.com');
-const CONTACT_FROM = resolveEnv(['CONTACT_FROM', 'QORI_CONTACT_FROM'], 'Qori Labs Contact <onboarding@resend.dev>');
 const ROOT_DIR = path.resolve(__dirname);
+const { resendApiKey, contactTo, contactFrom } = getContactConfig();
 
 app.use(express.json());
 app.use(express.static(ROOT_DIR));
 
 app.post('/api/contact', async (req, res) => {
-  if (!RESEND_API_KEY) {
+  if (!resendApiKey) {
     return res.status(500).json({ error: 'Email service not configured' });
   }
 
@@ -33,8 +25,8 @@ app.post('/api/contact', async (req, res) => {
 
   const cleanMessage = message.trim();
   const payload = {
-    from: CONTACT_FROM,
-    to: [CONTACT_TO],
+    from: contactFrom,
+    to: [contactTo],
     reply_to: email,
     subject: `Qori Labs contact: ${interest || 'General'}`,
     text: `New inquiry from ${name}\nEmail: ${email}\nTopic: ${interest}\n\nMessage:\n${cleanMessage}`,
@@ -48,7 +40,7 @@ app.post('/api/contact', async (req, res) => {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Authorization': `Bearer ${resendApiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
