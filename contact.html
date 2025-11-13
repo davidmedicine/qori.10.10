@@ -33,7 +33,7 @@
         <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--c-text-light);" data-i18n="contact_notice">Commercial solicitations will not receive a response.</p>
       </div>
       
-      <form action="https://formspree.io/f/YOUR_ID" method="POST">
+      <form data-contact-form>
         <div>
             <label for="name" data-i18n="contact_label_name">Name / Affiliation</label>
             <input id="name" name="name" type="text" required />
@@ -55,6 +55,7 @@
             <textarea id="message" name="message" required></textarea>
         </div>
         <button type="submit" class="btn" data-i18n="contact_submit">Send Message</button>
+        <p class="contact-status" data-contact-status></p>
       </form>
     </section>
   </main>
@@ -62,5 +63,6 @@
     <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
   </footer>
   <script src="app.js" defer></script>
+  <script src="contact.js" defer></script>
 </body>
 </html>
