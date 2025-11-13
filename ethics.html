@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n="meta_ethics_title">Qori Labs | Ethics &amp; Governance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="enhanced-styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary" class="nav-bar">
+      <a class="logo" href="index.html">Qori Labs</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>
+      <ul class="nav-list">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="reciprocal-intelligence.html" data-i18n="nav_ri">Reciprocal Intelligence</a></li>
+          <li><a href="projects.html" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="ethics.html" class="is-active" aria-current="page" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
+          <li><a href="whitepaper.html" data-i18n="nav_sms">SMS Prototype</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <language-switcher></language-switcher>
+    </nav>
+  </header>
+  <main>
+    <h1 data-i18n="ethics_title">Ethics &amp; Governance</h1>
+    <p class="status-note" data-i18n="ethics_status_note">Qori Labs operates as a non-commercial lab. All work is currently conceptual or restricted to lab environments.</p>
+    
+    <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 3rem;">
+      <section class="card">
+        <h2 data-i18n="ethics_consent_title">Consent (FPIC Vivo)</h2>
+        <p data-i18n="ethics_consent_body">We operate under the standard of Free, Prior, and Informed Consent (FPIC). However, we go further with "FPIC vivo"—consent must be continuous, revocable, and verifiable by the community at any moment, not just a one-time signature.</p>
+      </section>
+      <section class="card">
+        <h2 data-i18n="ethics_firewall_title">Commercial Firewall</h2>
+        <p data-i18n="ethics_firewall_body">Qori Labs is a non-commercial research initiative. Any future licensing involving community knowledge must be co-designed with communities, governed by their institutions, and strictly protected from extractive market pressures.</p>
+      </section>
+    </div>
+
+    <section class="ethics-commitments">
+      <h2 data-i18n="ethics_commitments_title">Reciprocal Intelligence Safeguards</h2>
+      <p data-i18n="ethics_intro">We translate ethical concerns into enforceable technical guarantees:</p>
+      <ul>
+        <li data-i18n="ri_checklist_council"><strong>Governance:</strong> Oversight by legitimate Community AI Councils.</li>
+        <li data-i18n="ri_checklist_fpic"><strong>Data Sovereignty:</strong> CARE Principles applied to all data lifecycles.</li>
+        <li data-i18n="ri_checklist_kill"><strong>Ultimate Control:</strong> Community-held technical kill switches.</li>
+        <li data-i18n="ri_checklist_reciprocity"><strong>Reciprocity:</strong> Mandatory value return (Ayni) recorded on ledgers.</li>
+      </ul>
+    </section>
+
+    <section class="ethics-references">
+      <h2 data-i18n="ethics_alignment_title">Global Alignment</h2>
+      <p>Our work builds upon and respects:</p>
+      <ul class="ref-list">
+        <li data-i18n="ethics_alignment_care"><strong>CARE Principles for Indigenous Data Governance</strong></li>
+        <li data-i18n="ethics_alignment_undrip"><strong>UNDRIP &amp; ILO 169</strong> (Self-determination)</li>
+        <li data-i18n="ethics_alignment_indigenous_ai"><strong>Indigenous AI Protocols</strong> (Concordia/Abundant Intelligences)</li>
+        <li data-i18n="ethics_alignment_decolonial"><strong>Decolonial Computing</strong> and Relational Ethics</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

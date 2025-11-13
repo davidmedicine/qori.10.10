@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n="meta_projects_title">Qori Labs | Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="enhanced-styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary" class="nav-bar">
+      <a class="logo" href="index.html">Qori Labs</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>
+      <ul class="nav-list">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="reciprocal-intelligence.html" data-i18n="nav_ri">Reciprocal Intelligence</a></li>
+          <li><a href="projects.html" class="is-active" aria-current="page" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="ethics.html" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
+          <li><a href="whitepaper.html" data-i18n="nav_sms">SMS Prototype</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <language-switcher></language-switcher>
+    </nav>
+  </header>
+  <main>
+    <h1 data-i18n="projects_title">Exploratory Work</h1>
+    <p data-i18n="projects_intro">Conceptual designs and lab prototypes under the Reciprocal Intelligence framework. None are currently deployed.</p>
+    
+    <div class="projects-grid">
+      <article class="project-card">
+        <h2 data-i18n="projects_recip_title">Reciprocal Intelligence Framework R&amp;D</h2>
+        <div class="status-stack">
+          <span class="status-pill" data-i18n="status_concept">Concept only</span>
+          <span class="status-pill" data-i18n="status_requires_fpic">Requires FPIC vivo</span>
+        </div>
+        <p data-i18n="projects_recip_description">Developing the standard: Community AI Council models, Boundary Cards, Ayni License, Reciprocity Ledger, and Policy Gatekeeper patterns.</p>
+      </article>
+
+      <article class="project-card">
+        <h2 data-i18n="projects_emerg_title">Offline-first Emergency Communication</h2>
+        <div class="status-stack">
+          <span class="status-pill" data-i18n="status_design">In Design</span>
+          <span class="status-pill" data-i18n="status_requires_fpic">Requires FPIC vivo</span>
+        </div>
+        <p data-i18n="projects_emerg_body">LoRa and SMS architectures for safety-of-life alerts in rural regions. Ensuring critical functions run on community-controlled devices with kill switches.</p>
+      </article>
+
+      <article class="project-card">
+        <h2 data-i18n="projects_sms_title">SMS Community Information Service</h2>
+        <div class="status-stack">
+          <span class="status-pill" data-i18n="status_lab">Lab prototype</span>
+          <span class="status-pill" data-i18n="status_not_active">Not active</span>
+        </div>
+        <p data-i18n="projects_sms_body">CLI + GSM workflow encoding FPIC enforcement and privacy safeguards. A potential module of Reciprocal Intelligence.</p>
+        <div style="margin-top: 1rem;">
+          <a href="whitepaper.html" class="btn btn-soft" data-i18n="projects_sms_link">Read White Paper</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

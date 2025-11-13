@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n="meta_contact_title">Qori Labs | Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="enhanced-styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav aria-label="Primary" class="nav-bar">
+      <a class="logo" href="index.html">Qori Labs</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>
+      <ul class="nav-list">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="reciprocal-intelligence.html" data-i18n="nav_ri">Reciprocal Intelligence</a></li>
+          <li><a href="projects.html" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="ethics.html" data-i18n="nav_ethics">Ethics &amp; Governance</a></li>
+          <li><a href="whitepaper.html" data-i18n="nav_sms">SMS Prototype</a></li>
+          <li><a href="contact.html" class="is-active" aria-current="page" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <language-switcher></language-switcher>
+    </nav>
+  </header>
+  <main>
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+      <div class="contact-context">
+        <h1 data-i18n="contact_title">Contact</h1>
+        <p data-i18n="contact_intro">We welcome contact from Indigenous organizations, universities, and public-interest institutions interested in the Reciprocal Intelligence standard.</p>
+        <div class="status-note" style="margin-top: 2rem;">
+          <p data-i18n="contact_status_note"><strong>Note:</strong> Qori Labs is in a conceptual research phase. We are not a vendor or a startup. Reaching out does not imply an active project in your territory.</p>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--c-text-light);" data-i18n="contact_notice">Commercial solicitations will not receive a response.</p>
+      </div>
+      
+      <form action="https://formspree.io/f/YOUR_ID" method="POST">
+        <div>
+            <label for="name" data-i18n="contact_label_name">Name / Affiliation</label>
+            <input id="name" name="name" type="text" required />
+        </div>
+        <div>
+            <label for="email" data-i18n="contact_label_email">Email</label>
+            <input id="email" name="email" type="email" required />
+        </div>
+        <div>
+            <label for="interest" data-i18n="contact_label_interest">Topic</label>
+            <select id="interest" name="interest" required>
+            <option value="community" data-i18n="contact_option_community">Community Inquiry</option>
+            <option value="academic" data-i18n="contact_option_academic">Academic / Research</option>
+            <option value="other" data-i18n="contact_option_other">Other</option>
+            </select>
+        </div>
+        <div>
+            <label for="message" data-i18n="contact_label_message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn" data-i18n="contact_submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p><small>&copy; <span id="year"></span> Qori Labs. <span data-i18n="footer_rights">All research outputs are co-licensed under Creative Commons BY-NC-SA 4.0 and community agreements.</span></small></p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
