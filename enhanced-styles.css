@@ -335,6 +335,32 @@ main {
   border-radius: var(--radius);
 }
 
+.ri-article {
+  margin-top: 3rem;
+}
+
+.ri-article-nav ol {
+  padding-left: 1.2rem;
+  margin: 1rem 0 0 0;
+}
+
+.ri-article-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.ri-article-part {
+  margin-top: 3rem;
+}
+
+.ri-article-part article {
+  margin-top: 1.5rem;
+}
+
+.ri-article-part h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+
 .ref-list li { margin-bottom: 1rem; font-size: 0.95rem; }
 
 /* --- Whitepaper Layout --- */
