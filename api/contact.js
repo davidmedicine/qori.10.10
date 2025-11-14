@@ -1,6 +1,5 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const { getContactConfig } = require('../contact-config');
-const { resendApiKey, contactTo, contactFrom } = getContactConfig();
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -8,6 +7,7 @@ module.exports = async (req, res) => {
     return;
   }
 
+  const { resendApiKey, contactTo, contactFrom } = getContactConfig();
   if (!resendApiKey) {
     res.status(500).json({ error: 'Email service not configured' });
     return;

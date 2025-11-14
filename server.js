@@ -8,12 +8,12 @@ const { getContactConfig } = require('./contact-config');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ROOT_DIR = path.resolve(__dirname);
-const { resendApiKey, contactTo, contactFrom } = getContactConfig();
 
 app.use(express.json());
 app.use(express.static(ROOT_DIR));
 
 app.post('/api/contact', async (req, res) => {
+  const { resendApiKey, contactTo, contactFrom } = getContactConfig();
   if (!resendApiKey) {
     return res.status(500).json({ error: 'Email service not configured' });
   }
