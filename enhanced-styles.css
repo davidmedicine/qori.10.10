@@ -92,6 +92,7 @@ p { margin-bottom: 1.5rem; max-width: 42em; } /* Optimal reading width */
 .btn-soft:hover {
   border-color: var(--c-text);
   background-color: var(--c-surface);
+  color: var(--c-text);
 }
 
 /* Status Pills & Stacks */
