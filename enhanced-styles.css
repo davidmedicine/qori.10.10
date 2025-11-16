@@ -417,6 +417,330 @@ button[type="submit"]:hover { background: var(--c-accent); }
   color: var(--c-status-concept);
 }
 
+/* Supreme 3D Printing Page Styles */
+
+.hero.supreme {
+  background: linear-gradient(135deg, var(--c-bg) 0%, rgba(156, 124, 56, 0.03) 100%);
+  padding: 4rem 0;
+  border-bottom: 2px solid var(--c-accent);
+}
+
+.status-pill--label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(156, 124, 56, 0.1);
+  border: 1px solid rgba(156, 124, 56, 0.2);
+  color: var(--c-text);
+}
+
+.sovereignty-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--c-border);
+}
+
+.metric-block {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.metric-block.primary {
+  background: rgba(156, 124, 56, 0.05);
+  border: 1px solid var(--c-accent);
+}
+
+.metric-block.transformation {
+  background: rgba(5, 150, 105, 0.05);
+  border: 1px solid var(--c-status-lab);
+}
+
+.metric-block.future {
+  background: rgba(217, 119, 6, 0.05);
+  border: 1px solid var(--c-status-concept);
+}
+
+.metric-header {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-light);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.metric-row {
+  margin: 1rem 0;
+}
+
+.metric-row .metric-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--c-accent);
+  font-family: var(--font-serif);
+  margin-bottom: 0.25rem;
+}
+
+.metric-row .metric-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--c-text);
+}
+
+.sovereignty-declaration {
+  font-size: 1.15rem;
+  padding: 1.5rem;
+  background: var(--c-surface);
+  border-left: 4px solid var(--c-accent);
+  border-radius: var(--radius);
+  margin: 2rem 0;
+  font-weight: 500;
+}
+
+.state-of-art-section {
+  padding: 3rem 0;
+  background: linear-gradient(180deg, transparent 0%, var(--c-bg) 50%, transparent 100%);
+}
+
+.breakthrough-showcase {
+  margin: 2rem 0;
+}
+
+.breakthrough-hero {
+  background: var(--c-surface);
+  border: 2px solid var(--c-accent);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.breakthrough-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--c-accent);
+  color: #fff;
+  padding: 0.35rem 1rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.efficiency-progression {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--c-bg);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.efficiency-progression::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-accent) 0%, var(--c-status-lab) 50%, var(--c-status-concept) 100%);
+  z-index: 0;
+}
+
+.efficiency-point {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background: var(--c-surface);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-border);
+  min-width: 100px;
+}
+
+.efficiency-point.current {
+  border-color: var(--c-accent);
+  background: rgba(156, 124, 56, 0.05);
+}
+
+.efficiency-point.future {
+  border-color: var(--c-status-concept);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+.eff-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--c-accent);
+  margin-bottom: 0.25rem;
+}
+
+.eff-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-text);
+  margin-bottom: 0.25rem;
+}
+
+.eff-detail {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--c-text-light);
+}
+
+.hardware-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.hw-item {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.hw-item.validated {
+  border-color: var(--c-status-lab);
+}
+
+.hw-validation-badge {
+  position: absolute;
+  top: -0.75rem;
+  right: 1rem;
+  background: var(--c-status-lab);
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.validation-icon {
+  font-size: 1rem;
+}
+
+.hw-specs-compact {
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.spec-item:last-child {
+  border-bottom: 0;
+}
+
+.spec-name {
+  font-weight: 600;
+  color: var(--c-text-light);
+}
+
+.spec-value {
+  color: var(--c-text);
+}
+
+.hw-citation {
+  font-size: 0.8rem;
+  color: var(--c-text-light);
+  font-style: italic;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--c-border);
+}
+
+.latam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.latam-example {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.latam-example.highlight {
+  border-color: var(--c-accent);
+  background: rgba(156, 124, 56, 0.03);
+}
+
+.example-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.country-badge {
+  font-size: 1.5rem;
+}
+
+.impact-stat {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--c-border);
+  text-align: center;
+}
+
+.stat-main {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--c-accent);
+  font-family: var(--font-serif);
+}
+
+.stat-context {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--c-text-light);
+}
+
+@media (max-width: 768px) {
+  .sovereignty-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .efficiency-progression {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .efficiency-progression::before {
+    display: none;
+  }
+}
+
 /* --- Footer --- */
 .site-footer {
   border-top: 1px solid var(--c-border);
