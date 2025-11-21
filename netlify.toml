@@ -8,5 +8,10 @@
 
 [[redirects]]
   from = "/console/*"
-  to = "/console/index.html"
+  to = "/ransa/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/ransa/*"
+  to = "/ransa/index.html"
   status = 200
