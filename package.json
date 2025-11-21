@@ -4,7 +4,9 @@
   "description": "Qori Labs website",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm run build:console",
+    "build:console": "npm --prefix sovereigndashboard install && npm --prefix sovereigndashboard run build && rm -rf console _next && cp -R sovereigndashboard/out/console ./console && cp -R sovereigndashboard/out/_next ./_next"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
