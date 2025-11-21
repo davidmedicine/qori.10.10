@@ -1,3 +1,12 @@
 [build]
+  command = "npm run build"
   publish = "."
   functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/console/*"
+  to = "/console/index.html"
+  status = 200
