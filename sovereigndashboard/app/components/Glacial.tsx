@@ -55,20 +55,36 @@ const noise = (seed: number, amplitude: number) => {
   return (frac - 0.5) * amplitude;
 };
 
-const useAnimatedNumber = (value: number, decimals = 0) => {
+const AnimatedNumber = ({
+  value,
+  unit,
+  decimals = 0,
+  className = '',
+}: {
+  value: number;
+  unit?: string;
+  decimals?: number;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(value);
-  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    const controls = animate(motionValue, value, { duration: 0.8, ease: 'easeOut' });
-    return controls.stop;
-  }, [motionValue, value]);
+    animate(motionValue, value, { duration: 0.8, ease: 'easeOut' });
+  }, [value, motionValue]);
 
   useMotionValueEvent(motionValue, 'change', (latest) => {
-    setDisplay(parseFloat(latest.toFixed(decimals)));
+    if (ref.current) {
+      ref.current.textContent = latest.toFixed(decimals);
+    }
   });
 
-  return display;
+  return (
+    <span className={className}>
+      <span ref={ref}>{value.toFixed(decimals)}</span>
+      {unit && <span className="ml-1 text-xs text-slate-400">{unit}</span>}
+    </span>
+  );
 };
 
 // --- HOOKS ---
@@ -136,9 +152,6 @@ export default function GLOFMonitorConsole() {
     if (isSystemAlert) target = 14.2; // Wave surge
     return Math.max(10, target + noise(seed, 0.1));
   }, [isSystemAlert, seconds]);
-
-  const animatedPressure = useAnimatedNumber(pressure, 1);
-  const animatedWaterLevel = useAnimatedNumber(waterLevel, 2);
 
   // Map Logic (Buoy Drift)
   const routePathRef = useRef<SVGPathElement | null>(null);
@@ -303,14 +316,14 @@ export default function GLOFMonitorConsole() {
                   <div className="absolute -right-28 top-0 text-right">
                     <span className="block text-[10px] font-bold tracking-widest text-slate-500">NIVEL DE AGUA</span>
                     <div className="flex items-baseline justify-end gap-1">
-                      <span className="text-4xl font-bold font-mono tabular-nums text-sky-100">{animatedWaterLevel.toFixed(2)}</span>
+                      <AnimatedNumber value={waterLevel} decimals={2} className="text-4xl font-bold font-mono tabular-nums text-sky-100" />
                       <span className="text-xs text-sky-400">m</span>
                     </div>
                   </div>
                   <div className="absolute -left-28 bottom-0 text-left">
                     <span className="block text-[10px] font-bold tracking-widest text-slate-500">PRESIÓN HIDRO.</span>
                     <div className="flex items-baseline justify-start gap-1">
-                      <span className="text-4xl font-bold font-mono tabular-nums text-sky-100">{animatedPressure.toFixed(1)}</span>
+                      <AnimatedNumber value={pressure} decimals={1} className="text-4xl font-bold font-mono tabular-nums text-sky-100" />
                       <span className="text-xs text-sky-400">kPa</span>
                     </div>
                   </div>
@@ -342,21 +355,23 @@ export default function GLOFMonitorConsole() {
               className="flex h-full w-full flex-col gap-2 p-2"
             >
               {/* Top: Critical Metrics Header */}
-              <div className="shrink-0 flex items-center justify-between rounded-t-xl border-l-4 border-l-red-500 bg-red-950/20 p-5 backdrop-blur-sm border-y border-r border-white/5">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500/20 text-red-400 animate-pulse">
-                    <Waves className="h-6 w-6" />
+                <div className="shrink-0 flex items-center justify-between rounded-t-xl border-l-4 border-l-red-500 bg-red-950/20 p-5 backdrop-blur-sm border-y border-r border-white/5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500/20 text-red-400 animate-pulse">
+                      <Waves className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-red-400 tracking-widest uppercase">Nivel Crítico</div>
+                      <div className="text-3xl font-bold font-mono tabular-nums text-white leading-none mt-1">
+                        <AnimatedNumber value={waterLevel} decimals={2} unit="m" />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-red-400 tracking-widest uppercase">Nivel Crítico</div>
-                    <div className="text-3xl font-bold font-mono tabular-nums text-white leading-none mt-1">{animatedWaterLevel.toFixed(2)}m</div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-bold text-slate-500 tracking-widest">PRESIÓN</div>
+                    <AnimatedNumber value={pressure} decimals={1} unit="kPa" className="text-xl font-mono tabular-nums text-white" />
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-[10px] font-bold text-slate-500 tracking-widest">PRESIÓN</div>
-                  <div className="text-xl font-mono tabular-nums text-white">{animatedPressure.toFixed(1)} kPa</div>
-                </div>
-              </div>
 
               {/* Bottom: Log Interface */}
               <div className="flex flex-1 flex-col overflow-hidden rounded-b-xl border border-slate-800 bg-black/40 shadow-2xl">

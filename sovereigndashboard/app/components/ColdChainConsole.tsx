@@ -50,20 +50,36 @@ const noise = (seed: number, amplitude: number) => {
   return (frac - 0.5) * amplitude;
 };
 
-const useAnimatedNumber = (value: number, decimals = 0) => {
+const AnimatedNumber = ({
+  value,
+  unit,
+  decimals = 0,
+  className = '',
+}: {
+  value: number;
+  unit?: string;
+  decimals?: number;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(value);
-  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    const controls = animate(motionValue, value, { duration: 0.8, ease: 'easeOut' });
-    return controls.stop;
-  }, [motionValue, value]);
+    animate(motionValue, value, { duration: 0.8, ease: 'easeOut' });
+  }, [value, motionValue]);
 
   useMotionValueEvent(motionValue, 'change', (latest) => {
-    setDisplay(parseFloat(latest.toFixed(decimals)));
+    if (ref.current) {
+      ref.current.textContent = latest.toFixed(decimals);
+    }
   });
 
-  return display;
+  return (
+    <span className={className}>
+      <span ref={ref}>{value.toFixed(decimals)}</span>
+      {unit && <span className="ml-1 text-xs text-gray-400">{unit}</span>}
+    </span>
+  );
 };
 
 function useStoryClock() {
@@ -252,9 +268,6 @@ export default function RansaResearchConsole() {
     if (isSystemAlert) target = 25;
     return Math.max(0, target + noise(seed, 2));
   }, [isSystemAlert, journeyProgress, seconds]);
-
-  const animatedTemperature = useAnimatedNumber(temperature, 1);
-  const animatedSpeed = useAnimatedNumber(speed, 0);
 
   // Prepare route length once mounted
   useEffect(() => {
@@ -466,14 +479,14 @@ export default function RansaResearchConsole() {
                   <div className="absolute -right-24 top-0 text-right">
                     <span className="block text-[10px] font-bold tracking-widest text-gray-500">VELOCIDAD</span>
                     <div className="flex items-baseline justify-end gap-1">
-                      <span className="text-4xl font-bold font-mono tabular-nums text-white">{animatedSpeed.toFixed(0)}</span>
+                      <AnimatedNumber value={speed} decimals={0} className="text-4xl font-bold font-mono tabular-nums text-white" />
                       <span className="text-xs text-gray-400">km/h</span>
                     </div>
                   </div>
                   <div className="absolute -left-24 bottom-0 text-left">
                     <span className="block text-[10px] font-bold tracking-widest text-gray-500">CARGA</span>
                     <div className="flex items-baseline justify-start gap-1">
-                      <span className="text-4xl font-bold font-mono tabular-nums text-white">{animatedTemperature.toFixed(1)}</span>
+                      <AnimatedNumber value={temperature} decimals={1} className="text-4xl font-bold font-mono tabular-nums text-white" />
                       <span className="text-xs text-gray-400">°C</span>
                     </div>
                   </div>
@@ -513,12 +526,14 @@ export default function RansaResearchConsole() {
                     </div>
                     <div>
                       <div className="text-xs font-bold text-red-400 tracking-widest uppercase">Temperatura Crítica</div>
-                      <div className="text-3xl font-bold font-mono tabular-nums text-white leading-none mt-1">{animatedTemperature.toFixed(1)}°C</div>
+                      <div className="text-3xl font-bold font-mono tabular-nums text-white leading-none mt-1">
+                        <AnimatedNumber value={temperature} decimals={1} unit="°C" />
+                      </div>
                     </div>
                   </div>
                   <div className="text-right">
                     <div className="text-[10px] font-bold text-gray-500 tracking-widest">VELOCIDAD ACTUAL</div>
-                    <div className="text-xl font-mono tabular-nums text-white">{animatedSpeed.toFixed(0)} km/h</div>
+                    <AnimatedNumber value={speed} decimals={0} unit="km/h" className="text-xl font-mono tabular-nums text-white" />
                   </div>
                 </div>
 

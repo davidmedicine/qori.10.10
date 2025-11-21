@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import BioConsole from '../components/bioconsole';
+import ColdChainConsole from '../components/ColdChainConsole';
 
 export const metadata: Metadata = {
-  title: 'Bio Amayu · Guardian Network',
-  description:
-    'Consola Bio Amayu para detectar amenazas acústicas en la Amazonía y alertar a guardaparques, incluso sin 4G.',
+  title: 'Ransa · Cadena de Frío',
+  description: 'Consola de monitoreo para transporte en ruta andina con fases normal/blind/incidente.',
 };
 
 export default function AjeGroupPage() {
-  return <BioConsole />;
+  return <ColdChainConsole />;
 }
