@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briefing Ransa | Sovereign Cold Chain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #d97706;
+      --accent-soft: rgba(217, 119, 6, 0.12);
+      --border: #334155;
+      --font-body: 'Inter', sans-serif;
+      --font-head: 'Playfair Display', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    h1, h2, h3 { font-family: var(--font-head); color: #fff; }
+    p { margin-bottom: 1rem; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .pill { display: inline-block; padding: 0.35rem 0.75rem; border: 1px solid var(--accent); color: var(--accent); background: var(--accent-soft); letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.75rem; font-family: var(--font-mono); }
+    .panel { background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; }
+    .grid-2 { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+    @media(min-width: 800px){ .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    /* Velvet Rope / Security Gate */
+    #gate { position: fixed; inset: 0; background: #020617; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: all 0.8s ease; }
+    #gate.gate-unlocked { opacity: 0; pointer-events: none; transform: scale(1.04); }
+    .gate-card { width: 90%; max-width: 420px; background: rgba(30,41,59,0.7); border: 1px solid var(--border); backdrop-filter: blur(12px); color: var(--text); padding: 2.5rem 2rem; text-align: center; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.55); }
+    .gate-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+    .gate-btn { margin-top: 1.75rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.9rem 2.4rem; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--font-mono); cursor: pointer; transition: all 0.3s; }
+    .gate-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 18px rgba(217,119,6,0.45); }
+    a.btn { display: inline-block; padding: 0.9rem 1.5rem; background: var(--accent); color: #000; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; font-family: var(--font-mono); text-decoration: none; border: 1px solid var(--accent); box-shadow: 0 15px 30px rgba(217,119,6,0.28); }
+    .muted { color: var(--muted); }
+    .mono { font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+  <!-- Security Gate -->
+  <div id="gate">
+    <div class="gate-card">
+      <div class="pill">Briefing Privado · Ransa</div>
+      <p class="muted mono" style="margin-top:1rem;">Session ID: RANSA-CC-ANDES-30B</p>
+      <p style="margin-top:0.5rem;">Acceso reservado para la Gerencia de Innovación de Ransa.<br />Todo el material se mantiene fuera de la nube.</p>
+      <button class="gate-btn" onclick="unlockGate()">Ingresar</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="pill">Cadena de frío soberana</div>
+      <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin:1rem 0 0.5rem;">The Sovereign Cold Chain.</h1>
+      <p class="muted" style="font-size:1.15rem;">Eliminando blind spots de conectividad en el corredor andino.</p>
+      <p class="muted" style="max-width:720px;">Ransa mueve proteínas y alimentos perecibles en altura. Cuando la señal muere, el riesgo de pérdida de carga sube. Este dossier muestra cómo el Nodo Qori mantiene la cadena de frío viva en “modo oscuro”.</p>
+      <div style="margin-top:1.5rem;">
+        <a class="btn" href="/console/">Ver consola en vivo</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Diagnóstico: Blind Spot = Pérdida</h2>
+      <div class="panel" style="margin-top:1rem;">
+        <p><strong>Cuando un camión entra a la Sierra, entra a un agujero negro digital.</strong> 4G se cae, los sensores dejan de reportar y la cabina opera ciega.</p>
+        <p><strong>Si el módulo de frío falla en la Ruta 30B</strong> (Zonas de Silencio), la carga supera 4°C sin que nadie lo note. El desperdicio se detecta en Lima, demasiado tarde.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Solución: El Nodo Qori viaja con la carga</h2>
+      <div class="grid-2">
+        <div class="panel">
+          <h3 class="mono" style="color:var(--accent); letter-spacing:0.14em;">Offline Intelligence</h3>
+          <p>El Nodo corre modelos locales de temperatura. Detecta desviaciones en caliente y alerta al conductor por audio/visual en cabina — sin internet.</p>
+          <p>Los ajustes de potencia del equipo de frío se recomiendan localmente; el sobre-enfriado también se previene para evitar daño por congelación.</p>
+        </div>
+        <div class="panel">
+          <h3 class="mono" style="color:var(--accent); letter-spacing:0.14em;">Community License</h3>
+          <p>El Nodo firma en un registro inmutable cada paso por comunidades: <em>speed-limit compliance</em>, geocerca activa y cero invasión de datos.</p>
+          <p>La bitácora se queda en territorio; Ransa demuestra conducción segura y respeto comunitario sin depender de la nube.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Demo · Cadena de Frío</h2>
+      <div class="panel">
+        <!-- LOOM VIDEO OF DASHBOARD GOES HERE -->
+        <p class="muted mono">Simulation: Offline temperature anomaly detection on Route 30B.</p>
+        <p style="margin-top:0.5rem;">La consola muestra la ruta Acopio → Ruta 30B (Zona Silencio) → Centro de Distribución Lima, con velocidad, ETA y temperatura en tiempo real aun sin 4G.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function unlockGate() {
+      document.getElementById('gate').classList.add('gate-unlocked');
+      setTimeout(() => document.getElementById('gate').style.display = 'none', 850);
+    }
+  </script>
+</body>
+</html>
