@@ -50,17 +50,19 @@
   </style>
 </head>
 <body>
-  <!-- Security Gate -->
-  <div id="gate">
-    <div class="gate-card">
-      <div class="pill">Briefing Privado · Ransa</div>
-      <p class="muted mono" style="margin-top:1rem;">Session ID: RANSA-CC-ANDES-30B</p>
-      <p style="margin-top:0.5rem;">Acceso reservado para la Gerencia de Innovación de Ransa.<br />Todo el material se mantiene fuera de la nube.</p>
-      <button class="gate-btn" onclick="unlockGate()">Ingresar</button>
-    </div>
+  <script>
+    // Redirect directly to the live console route
+    window.location.replace('/console/');
+  </script>
+
+  <!-- Fallback content if redirect fails -->
+  <div class="container" style="padding-top:3rem">
+    <p class="muted mono">Redirigiendo a la consola en vivo...</p>
+    <p><a class="btn" href="/console/">Ir a /console/</a></p>
   </div>
 
-  <div class="container">
+  <!-- Legacy content (kept for reference, hidden by redirect) -->
+  <div class="container" style="display:none;">
     <section class="hero">
       <div class="pill">Cadena de frío soberana</div>
       <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin:1rem 0 0.5rem;">The Sovereign Cold Chain.</h1>
