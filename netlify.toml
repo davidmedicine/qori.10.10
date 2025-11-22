@@ -8,13 +8,13 @@
 
 [[redirects]]
   from = "/console/*"
-  to = "/ransa/:splat"
+  to = "/demo/:splat"
   status = 301
 
 [[redirects]]
   from = "/ransa/*"
-  to = "/ransa/index.html"
-  status = 200
+  to = "/demo/:splat"
+  status = 301
 
 [[redirects]]
   from = "/demo/*"

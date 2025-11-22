@@ -8,22 +8,15 @@ import {
   AlertOctagon,
   Brain,
   ChevronRight,
-  Eye,
-  Heart,
+  Info, // Added Info Icon
   Layers,
-  MapPin,
-  Mountain,
   Radio,
-  Scan,
   Send,
   ShieldCheck,
   Signal,
-  WifiOff,
 } from 'lucide-react';
 
 // --- TYPES & CONFIG ---
-type Phase = 'NORMAL' | 'RISK' | 'INTERVENTION';
-
 const STORY_DURATION = 60; // seconds loop
 
 // Route: Spiraling into the pit
@@ -94,7 +87,6 @@ function useStoryClock() {
 
 // --- SUB-COMPONENTS ---
 
-// 1. EKG Animation Component
 const EKGLine = ({ color }: { color: string }) => (
   <svg viewBox="0 0 200 50" className="h-full w-full overflow-visible">
     <motion.path
@@ -117,7 +109,6 @@ const EKGLine = ({ color }: { color: string }) => (
         repeatDelay: 0.5 
       }}
     />
-    {/* Grid background for EKG */}
     <path d="M 0 10 L 200 10 M 0 20 L 200 20 M 0 30 L 200 30 M 0 40 L 200 40" stroke={color} strokeOpacity="0.1" strokeWidth="0.5" />
     <path d="M 40 0 L 40 50 M 80 0 L 80 50 M 120 0 L 120 50 M 160 0 L 160 50" stroke={color} strokeOpacity="0.1" strokeWidth="0.5" />
   </svg>
@@ -135,7 +126,6 @@ const TopHeader = React.memo(({
   <header className="flex h-16 items-center justify-between border-b border-white/5 bg-[#0f172a] px-6 shadow-2xl shrink-0 z-20">
     <div className="flex items-baseline gap-4">
       <div className="flex items-center gap-2">
-         {/* Dynamic Brand Logo Color */}
          <div 
             className="h-3 w-3 rounded-sm transform rotate-45 shadow-[0_0_10px_currentColor]" 
             style={{ backgroundColor: brandColor, color: brandColor }}
@@ -153,6 +143,17 @@ const TopHeader = React.memo(({
     </div>
 
     <div className="flex items-center gap-3">
+      {/* --- NEW INFO BUTTON --- */}
+      <a
+        href="/mining/info" // NOTE: Ensure you create this page or change URL to your one-pager link
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 rounded-sm border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-bold tracking-widest text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
+      >
+        <Info className="h-3.5 w-3.5" />
+        <span className="hidden sm:inline">INFO</span>
+      </a>
+
       <div className="flex items-center gap-2 rounded-sm border border-slate-700/50 bg-slate-800/50 px-3 py-1.5 text-[10px] font-bold tracking-widest text-slate-400">
         <Brain className="h-3.5 w-3.5" /> GUARDIAN AI: ON
       </div>
@@ -193,8 +194,6 @@ const MapOverlayUI = ({
   isAlert: boolean;
 }) => (
   <div className="absolute inset-0 pointer-events-none p-6 flex flex-col justify-between z-10">
-    
-    {/* TOP LEFT: Location / Static */}
     <div className="flex flex-col gap-2 items-start">
        <div className="bg-slate-950/80 backdrop-blur-md border border-slate-800 p-3 rounded-sm shadow-lg">
          <div className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Sector GPS</div>
@@ -203,7 +202,6 @@ const MapOverlayUI = ({
        </div>
     </div>
 
-    {/* TOP RIGHT: BIO-TELEMETRY (The Ethical Dashboard) */}
     <div className="absolute top-6 right-6 w-72">
         <div className="bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-sm shadow-2xl overflow-hidden">
              <div className="flex items-center justify-between bg-slate-900/50 px-3 py-2 border-b border-slate-800">
@@ -213,12 +211,10 @@ const MapOverlayUI = ({
                 </div>
                 <div className="h-1.5 w-1.5 rounded-full bg-red-500 animate-ping" />
              </div>
-             
              <div className="p-4">
                 <div className="h-16 w-full mb-4 bg-slate-900/50 rounded border border-slate-800/50 relative overflow-hidden">
                     <EKGLine color={brandColor} />
                 </div>
-                
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-1">Heart Rate</div>
@@ -242,18 +238,14 @@ const MapOverlayUI = ({
         </div>
     </div>
 
-    {/* BOTTOM LEFT: GEOTECH RADAR */}
     <div className="flex flex-col gap-2 items-start w-64">
         <div className={`w-full backdrop-blur-md border-l-4 p-4 rounded-r-sm shadow-2xl transition-colors duration-300 ${isAlert ? 'bg-red-950/90 border-red-500' : 'bg-slate-950/90 border-slate-600'}`}>
             <div className="flex items-center gap-2 mb-3">
                 <Layers className={`h-4 w-4 ${isAlert ? 'text-red-500' : 'text-slate-400'}`} />
                 <span className="text-[10px] text-slate-400 uppercase tracking-widest">Geotech Radar</span>
             </div>
-            
             <div className="flex items-center gap-4">
-                {/* Radar Animation */}
                 <div className="relative h-16 w-16 rounded-full border border-slate-700 bg-slate-900 overflow-hidden flex items-center justify-center">
-                     {/* Radar Sweep */}
                      <motion.div 
                         className="absolute inset-0 rounded-full"
                         style={{ 
@@ -263,12 +255,10 @@ const MapOverlayUI = ({
                         animate={{ rotate: 360 }}
                         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                      />
-                     {/* Grid Lines */}
                      <div className="absolute inset-0 border border-slate-700 rounded-full scale-50 opacity-30" />
                      <div className="absolute h-full w-[1px] bg-slate-700 opacity-30" />
                      <div className="absolute w-full h-[1px] bg-slate-700 opacity-30" />
                 </div>
-
                 <div>
                     <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-0.5">Slope Stability</div>
                     <div className="flex items-baseline gap-1">
@@ -287,25 +277,21 @@ const MapOverlayUI = ({
   </div>
 );
 
-// --- MAIN COMPONENT ---
-
-export default function HumanSafetyDashboard() {
+function DashboardContent() {
   const searchParams = useSearchParams();
   const seconds = useStoryClock();
   
-  // --- 1. DYNAMIC BRANDING LOGIC ---
   const clientParam = searchParams.get('client');
   
   const brandConfig = useMemo(() => {
     const brands: Record<string, { name: string; color: string }> = {
-      antamina: { name: 'ANTAMINA', color: '#009B3A' }, // Green
-      lasbambas: { name: 'LAS BAMBAS', color: '#e11d48' }, // Reddish
-      default: { name: 'QORI', color: '#14b8a6' }, // Medical Teal (Default)
+      antamina: { name: 'ANTAMINA', color: '#009B3A' },
+      lasbambas: { name: 'LAS BAMBAS', color: '#e11d48' },
+      default: { name: 'QORI', color: '#14b8a6' },
     };
     return brands[clientParam || 'default'] || brands['default'];
   }, [clientParam]);
 
-  // State
   const [operatorMessage, setOperatorMessage] = useState('');
   const [userMessages, setUserMessages] = useState<{ id: number; msg: string; ts: number }[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -315,7 +301,6 @@ export default function HumanSafetyDashboard() {
   const routeLengthRef = useRef(0);
   const isMountedRef = useRef(false);
 
-  // Motion values
   const smoothJourney = useMotionValue(0);
   const truckX = useMotionValue(750);
   const truckY = useMotionValue(100);
@@ -327,7 +312,6 @@ export default function HumanSafetyDashboard() {
     return () => { isMountedRef.current = false; };
   }, []);
 
-  // Reset chat on loop
   useEffect(() => {
     if (seconds === 0) setUserMessages([]);
   }, [seconds]);
@@ -339,38 +323,28 @@ export default function HumanSafetyDashboard() {
     setOperatorMessage('');
   };
 
-  // --- 2. SIMULATION LOGIC (SAFETY NARRATIVE) ---
-  
-  // Timeline:
-  // 0-20s: Normal Operation
-  // 20-25s: Risk Detected (Microsleep + Slope Instability)
-  // 25-40s: Intervention (Auto Brakes)
-  // 40-60s: Safe State
-
   const isAlert = seconds >= 22 && seconds < 40;
 
   const journeyProgress = useMemo(() => {
-     if (seconds < 25) return seconds / STORY_DURATION; // Normal speed
-     if (seconds < 40) return 25 / STORY_DURATION; // Stopped during intervention
-     return (25 + ((seconds - 40) * 0.5)) / STORY_DURATION; // Slow recovery
+     if (seconds < 25) return seconds / STORY_DURATION;
+     if (seconds < 40) return 25 / STORY_DURATION;
+     return (25 + ((seconds - 40) * 0.5)) / STORY_DURATION;
   }, [seconds]);
 
-  // Metrics Simulation
   const heartRate = useMemo(() => {
-      if (seconds < 18) return 75 + noise(seconds, 5); // Normal Resting
-      if (seconds < 40) return 115 + noise(seconds, 10); // Panic / Stress event
-      return 85 - ((seconds - 40)); // Recovery
+      if (seconds < 18) return 75 + noise(seconds, 5);
+      if (seconds < 40) return 115 + noise(seconds, 10);
+      return 85 - ((seconds - 40));
   }, [seconds]);
 
   const o2Sat = 98 + noise(seconds, 0.5);
 
   const slopeStability = useMemo(() => {
       if (seconds < 20) return 0.2 + Math.abs(noise(seconds, 0.1));
-      if (seconds < 40) return 15 + Math.abs(noise(seconds, 3)); // LANDSLIDE DETECTED
-      return 0.2; // Stabilized
+      if (seconds < 40) return 15 + Math.abs(noise(seconds, 3));
+      return 0.2;
   }, [seconds]);
 
-  // Path Animation
   useEffect(() => {
     if (!mounted) return;
     const el = routePathRef.current;
@@ -387,7 +361,6 @@ export default function HumanSafetyDashboard() {
     smoothJourney.set(journeyProgress);
   }, [journeyProgress, mounted, smoothJourney, truckRotation, truckX, truckY]);
 
-  // Smooth animation wrapper
   useEffect(() => {
     const controls = animate(smoothJourney, journeyProgress, { duration: 0.5, ease: 'linear' });
     return controls.stop;
@@ -407,7 +380,6 @@ export default function HumanSafetyDashboard() {
     truckRotation.set((Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * 180) / Math.PI);
   });
 
-  // Log Combiner
   const combinedLogs = useMemo(() => {
     const sys = SYSTEM_LOGS.filter((l) => seconds >= l.t).map((log, idx) => ({
       ...log,
@@ -437,14 +409,8 @@ export default function HumanSafetyDashboard() {
       <TopHeader brandName={brandConfig.name} brandColor={brandConfig.color} isAlert={isAlert} />
 
       <div className="flex flex-1 overflow-hidden relative">
-        
-        {/* --- LEFT PANEL: RADAR MAP --- */}
         <div className="relative flex-[2] bg-[#020617] border-r border-white/5">
-          
-          {/* Background: Dark Radar aesthetic */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(20,184,166,0.05),rgba(2,6,23,1))]" />
-          
-          {/* Radar Grid */}
           <div className="absolute inset-0 opacity-10 bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:80px_80px]" />
           <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
              <div className="w-[600px] h-[600px] rounded-full border border-slate-600" />
@@ -452,7 +418,6 @@ export default function HumanSafetyDashboard() {
              <div className="absolute w-[200px] h-[200px] rounded-full border border-slate-800" />
           </div>
 
-          {/* Map View */}
           <div className="absolute inset-0 p-0 overflow-hidden">
             <MapOverlayUI 
                 heartRate={heartRate}
@@ -461,7 +426,6 @@ export default function HumanSafetyDashboard() {
                 brandColor={brandConfig.color}
                 isAlert={isAlert}
             />
-
             <svg viewBox="0 0 900 600" className="h-full w-full overflow-visible" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -469,27 +433,16 @@ export default function HumanSafetyDashboard() {
                   <feComposite in="SourceGraphic" in2="blur" operator="over" />
                 </filter>
               </defs>
-
-              {/* Slope / Terrain Abstract Lines */}
               <path d="M 0 600 L 200 550 L 600 480 L 900 600 Z" fill="none" stroke="#1e293b" strokeWidth="2" />
               <path d="M 900 0 L 750 100 L 900 200 Z" fill="none" stroke="#1e293b" strokeWidth="2" />
-
-              {/* Danger Zone - Geotech Instability Area */}
               <circle cx="400" cy="300" r="120" fill="url(#hatch)" opacity={isAlert ? 0.3 : 0} className="transition-opacity duration-1000" />
               <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
                  <rect width="2" height="10" fill="#ef4444" opacity="0.5" />
               </pattern>
-
-              {/* The Road Path */}
               <path d={ROUTE_PATH_D} fill="none" stroke="#1e293b" strokeWidth={20} strokeLinecap="round" />
               <path d={ROUTE_PATH_D} fill="none" stroke={brandConfig.color} strokeOpacity="0.3" strokeWidth={2} strokeDasharray="4 4" />
               <path ref={routePathRef} d={ROUTE_PATH_D} fill="none" stroke="transparent" />
-
-              {/* THE ASSET (Abstract Geometric Representation) */}
-              <motion.g
-                style={{ x: truckX, y: truckY, rotate: truckRotation }}
-              >
-                {/* Safety Halo (Geofence) */}
+              <motion.g style={{ x: truckX, y: truckY, rotate: truckRotation }}>
                 <motion.circle 
                     r={40} 
                     stroke={isAlert ? '#ef4444' : brandConfig.color}
@@ -498,9 +451,7 @@ export default function HumanSafetyDashboard() {
                     animate={{ scale: [1, 1.1], opacity: [0.5, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
                 />
-
-                {/* Vehicle Icon */}
-                <g transform="rotate(90)"> {/* Rotate to align with path tangent */}
+                <g transform="rotate(90)"> 
                     <path d="M -10 -15 L 10 -15 L 12 15 L -12 15 Z" fill="#0f172a" stroke={isAlert ? '#ef4444' : '#94a3b8'} strokeWidth="2" />
                     <rect x="-8" y="5" width="16" height="8" rx="1" fill={isAlert ? '#ef4444' : brandConfig.color} />
                 </g>
@@ -509,9 +460,7 @@ export default function HumanSafetyDashboard() {
           </div>
         </div>
 
-        {/* --- RIGHT PANEL: NARRATIVE LOGS --- */}
         <div className="flex-1 flex flex-col bg-[#020617] border-l border-slate-800 max-w-md z-20 shadow-xl">
-            {/* Status Header */}
             <div className={`p-4 border-b border-slate-800 ${isAlert ? 'bg-red-950/20' : 'bg-slate-900/30'}`}>
                 <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Safety Log</span>
@@ -526,19 +475,14 @@ export default function HumanSafetyDashboard() {
                 </div>
             </div>
 
-            {/* Logs Feed */}
             <div className="flex-1 overflow-hidden flex flex-col bg-[#020617] font-mono text-xs relative">
-                {/* Scanline effect */}
                 <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.3)_50%)] bg-[size:100%_4px] opacity-20" />
-                
                 <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-slate-800">
                     {combinedLogs.map((log) => {
                         const isUser = log.source === 'user';
-                        // Log Styling based on Type
                         let borderClass = 'border-slate-800';
                         let textClass = 'text-slate-400';
                         let bgClass = '';
-
                         if (log.type === 'error') {
                              textClass = 'text-red-400';
                              borderClass = 'border-red-900/50';
@@ -560,7 +504,6 @@ export default function HumanSafetyDashboard() {
                              borderClass = 'border-blue-900/50';
                              bgClass = 'bg-blue-950/10';
                         }
-
                         return (
                             <motion.div 
                                 key={log.id}
@@ -579,7 +522,6 @@ export default function HumanSafetyDashboard() {
                     <div ref={chatBottomRef} />
                 </div>
 
-                {/* Chat Input */}
                 <div className="p-3 border-t border-slate-800 bg-[#0f172a]">
                     <form 
                         onSubmit={(e) => { e.preventDefault(); handleSend(); }}
@@ -600,8 +542,6 @@ export default function HumanSafetyDashboard() {
             </div>
         </div>
       </div>
-
-      {/* Footer */}
       <footer className="relative z-50 h-6 bg-[#020617] border-t border-slate-800 flex items-center justify-between px-4 text-[9px] text-slate-600 uppercase tracking-widest">
         <span>{brandConfig.name} Safety Systems // ISO 45001 COMPLIANT</span>
         <div className="flex gap-4">
@@ -609,8 +549,6 @@ export default function HumanSafetyDashboard() {
             <span className="flex items-center gap-1"><Radio className="h-2 w-2" /> MESH LINK</span>
         </div>
       </footer>
-
-      {/* FULL SCREEN RED FLASH ON CRITICAL INTERVENTION */}
       <AnimatePresence>
         {isAlert && (
           <motion.div
@@ -622,5 +560,14 @@ export default function HumanSafetyDashboard() {
         )}
       </AnimatePresence>
     </main>
+  );
+}
+
+// Default export wrapped in Suspense for build safety
+export default function Page() {
+  return (
+    <React.Suspense fallback={<div className="bg-slate-950 h-screen w-screen text-white flex items-center justify-center">Loading Qori Guard...</div>}>
+      <DashboardContent />
+    </React.Suspense>
   );
 }
