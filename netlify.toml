@@ -20,3 +20,8 @@
   from = "/demo/*"
   to = "/demo/mining/index.html"
   status = 200
+
+[[redirects]]
+  from = "/qoriguard/*"
+  to = "/qoriquard/:splat"
+  status = 301
