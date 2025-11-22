@@ -289,7 +289,7 @@ const MapOverlayUI = ({
 
 // --- MAIN COMPONENT ---
 
-export default function HumanSafetyDashboard() {
+function DashboardContent() {
   const searchParams = useSearchParams();
   const seconds = useStoryClock();
   
@@ -622,5 +622,13 @@ export default function HumanSafetyDashboard() {
         )}
       </AnimatePresence>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <React.Suspense fallback={<div className="bg-slate-950 h-screen w-screen text-white flex items-center justify-center">Loading Qori Guard...</div>}>
+      <DashboardContent />
+    </React.Suspense>
   );
 }
