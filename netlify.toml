@@ -15,3 +15,8 @@
   from = "/ransa/*"
   to = "/ransa/index.html"
   status = 200
+
+[[redirects]]
+  from = "/demo/*"
+  to = "/demo/index.html"
+  status = 200
