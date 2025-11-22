@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
-import MineGuardPage from '../../components/mining';
+import type { Metadata } from "next";
+import MiningDashboard from "../../components/mining";
 
 export const metadata: Metadata = {
-  title: 'Mining · Open Pit Monitor',
-  description: 'Simulador de rajo abierto con monitoreo soberano para flotas mineras.',
+  title: "Mining · Qori Guard",
+  description: "Simulador de monitoreo soberano para operaciones mineras.",
 };
 
-export default function MiningRoute() {
-  return <MineGuardPage />;
+export default function RansaMiningPage() {
+  return <MiningDashboard />;
 }
