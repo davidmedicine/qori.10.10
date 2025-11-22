@@ -1,5 +1,12 @@
-// Force rebuild: 2025-02-05T12:00:00Z
-import Page, { metadata } from "../../mining/page";
+// Force rebuild: 2025-02-05T14:30:00Z
+import type { Metadata } from "next";
+import Page from "../../mining/page";
 
-export { metadata };
-export default Page;
+export const metadata: Metadata = {
+  title: "Mining · Qori Guard",
+  description: "Simulador de monitoreo soberano para operaciones mineras.",
+};
+
+export default function RansaMiningPage() {
+  return <Page />;
+}
