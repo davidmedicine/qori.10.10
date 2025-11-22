@@ -30,6 +30,9 @@ const BRAND_ORANGE = '#F58220';
 const ROUTE_PATH_D =
   'M 750 100 C 600 120 400 150 300 200 C 250 225 250 275 300 300 C 400 350 600 380 650 400 C 700 420 700 460 600 480 C 400 520 200 540 130 550';
 
+// Zone where signal is lost (approx 40% to 75% of the path)
+const SILENT_ZONE_RANGE = { start: 0.40, end: 0.75 };
+
 const SYSTEM_LOGS = [
   { t: 12, msg: 'AVISO: Señal LTE débil (-110dBm). Zona de sombra.', type: 'warning' },
   { t: 15, msg: 'CONEXIÓN PERDIDA. Iniciando Modo Soberano (Edge AI).', type: 'error' },
